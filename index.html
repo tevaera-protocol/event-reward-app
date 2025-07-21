@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🎉 Welcome to the TEVA Booth!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap 5 CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">🎉 Welcome to the TEVA Booth!</h2>
+      <h4 class="text-center mb-4">
+        Scan. Verify. Collect 1000 TEVA tokens instantly!
+      </h4>
+      <form id="rewardForm" novalidate>
+        <div class="mb-3">
+          <label for="otp" class="form-label"
+            >Show this screen to a TEVA booth staff member. They’ll give you a
+            6-digit OTP to verify your visit.</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="otp"
+            placeholder="Enter 6-digit OTP here"
+            required
+            minlength="6"
+            maxlength="6"
+            pattern="\d{6}"
+          />
+          <div class="invalid-feedback">Please enter a valid 6-digit OTP.</div>
+        </div>
+        <div class="mb-3">
+          <label for="walletAddress" class="form-label">Wallet Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="walletAddress"
+            placeholder="Enter wallet address"
+            required
+            minlength="10"
+          />
+          <div class="invalid-feedback">
+            Please enter a valid wallet address (minimum 10 characters).
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          Submit
+        </button>
+      </form>
+
+      <div id="result" class="mt-3"></div>
+    </div>
+
+    <script>
+      const form = document.getElementById("rewardForm");
+      const resultDiv = document.getElementById("result");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.classList.add("was-validated");
+          return;
+        }
+
+        const submitBtn = document.getElementById("submitBtn");
+        const originalBtnContent = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Verifying...`;
+
+        const walletAddress = document
+          .getElementById("walletAddress")
+          .value.trim();
+        const otp = document.getElementById("otp").value.trim();
+        const apiEndpoint = "http://localhost:4100";
+
+        try {
+          const response = await fetch(`${apiEndpoint}/event/reward`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ walletAddress, otp }),
+          });
+
+          const data = await response.json();
+
+          if (data.message) {
+            resultDiv.innerHTML = `
+        <div class="alert alert-success">
+          ✅ You’ve earned TEVA rewards 🎉
+        </div>`;
+          } else {
+            resultDiv.innerHTML = `
+        <div class="alert alert-danger">
+          ❌ Failed to claim reward: ${data.error}.
+        </div>`;
+          }
+        } catch (err) {
+          resultDiv.innerHTML = `<div class="alert alert-danger">Request failed: ${err.message}</div>`;
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnContent;
+        }
+      });
+    </script>
+  </body>
+</html>
