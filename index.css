@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* prevent scroll */
+  height: 100%;
+}
+
+/* Image that fills the screen without scrolling or zooming */
+.bg-img {
+  position: fixed; /* stays fixed to viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1; /* behind your main content */
+}
+
+@font-face {
+  font-family: 'monument-regular';
+  src: url('/assets/fonts/MonumentExtended-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'monument-ultrabold';
+  src: url('/assets/fonts/MonumentExtended-Ultrabold.otf') format('opentype');
+}
+
+.teva-logo{
+    width: 200px;
+}
