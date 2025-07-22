@@ -43,12 +43,12 @@ body {
 
 @font-face {
   font-family: "monument-regular";
-  src: url("/assets/fonts/MonumentExtended-Regular.otf") format("opentype");
+  src: url("./assets/fonts/MonumentExtended-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: "monument-ultrabold";
-  src: url("/assets/fonts/MonumentExtended-Ultrabold.otf") format("opentype");
+  src: url("./assets/fonts/MonumentExtended-Ultrabold.otf") format("opentype");
 }
 
 .tevaera-logo {

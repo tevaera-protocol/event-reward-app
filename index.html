@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <img src="/assets/images/background.png" alt="bg" class="bg-img" />
+    <img src="./assets/images/background.png" alt="bg" class="bg-img" />
     <div class="bg-gradient-overlay"></div>
     <div class="ms-0 ms-md-5 p-4 pb-0 mt-4 mt-md-2">
       <header class="d-flex justify-content-between align-items-center">
-        <img src="/assets/images/tevaera.png" class="tevaera-logo" />
+        <img src="./assets/images/tevaera.png" class="tevaera-logo" />
         <span class="d-flex align-items-center" style="font-weight: bold"
           >powered by
           <svg
@@ -50,7 +50,7 @@
       <div class="header-description mb-5">
         <p>
           Scan. Verify. Collect &nbsp;
-          <img src="/assets/images/tevaLogo.png" class="teva-logo" />
+          <img src="./assets/images/tevaLogo.png" class="teva-logo" />
           <span style="color: rgba(77, 255, 187, 1)">1000 TEVA</span><br />
           tokens instantly!
         </p>
@@ -146,7 +146,7 @@
           .getElementById("walletAddress")
           .value.trim();
         const otp = document.getElementById("otp").value.trim();
-        const apiEndpoint = "http://localhost:4100";
+        const apiEndpoint = "https://openapi.tevaera.com";
 
         try {
           const response = await fetch(`${apiEndpoint}/event/reward`, {
