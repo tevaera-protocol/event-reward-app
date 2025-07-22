@@ -52,17 +52,17 @@ body {
 }
 
 .tevaera-logo {
-  width: 200px;
+  width: 7rem;
 }
 
 header {
-  margin-bottom: 7rem;
+  margin-bottom: 5rem;
 }
 
 .welcome-header {
   transform: scaleY(1.1);
   font-family: "monument-regular";
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .header-description {
@@ -177,7 +177,8 @@ header {
 }
 
 @media (max-height: 800px) {
-  body, html {
+  body,
+  html {
     height: auto;
     overflow-y: auto;
   }
@@ -193,5 +194,13 @@ header {
   }
   header {
     margin-bottom: 4rem;
+  }
+
+  .welcome-header {
+    font-size: 1rem;
+  }
+
+  .header-description {
+    font-size: 1rem;
   }
 }
