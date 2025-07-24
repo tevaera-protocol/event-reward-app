@@ -13,6 +13,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
   <link rel="stylesheet" href="index.css" />
+
+  <script>
+    (function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const wallet = urlParams.get("wallet");
+
+      if (wallet) {
+        document.addEventListener("DOMContentLoaded", function () {
+          const walletInput = document.getElementById("walletAddress");
+          if (walletInput) {
+            walletInput.value = wallet;
+          }
+        });
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -80,13 +96,6 @@
     const form = document.getElementById("rewardForm");
     const walletAddressInput = document.getElementById("walletAddress");
     const otpInput = document.getElementById("otp");
-
-    // Read wallet address from query string and pre-populate
-    const urlParams = new URLSearchParams(window.location.search);
-    const walletFromQuery = urlParams.get('wallet');
-    if (walletFromQuery) {
-      walletAddressInput.value = walletFromQuery;
-    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
