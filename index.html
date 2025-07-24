@@ -118,7 +118,11 @@
         const data = await response.json();
 
         if (data.message) {
-          toastr.success("✅ You’ve earned TEVA rewards 🎉", "Success");
+          toastr.success("✅ You've earned TEVA rewards 🎉", "Success");
+          // Wait 2 seconds then redirect to tevaera.com
+          setTimeout(() => {
+            window.location.href = "https://tevaera.com";
+          }, 2000);
         } else {
           toastr.error(`❌ Failed to claim reward: ${data.error}`, "Error");
         }
